@@ -1,0 +1,15 @@
+@media screen and (max-width: 1024px) {
+	.grid__wrapper {
+		@apply grid-cols-3 gap-6;
+	}
+}
+@media screen and (max-width: 768px) {
+	.grid__wrapper {
+		@apply grid-cols-2 gap-5;
+	}
+}
+@media screen and (max-width: 480px) {
+	.grid__wrapper {
+		@apply grid-cols-1 gap-5;
+	}
+}

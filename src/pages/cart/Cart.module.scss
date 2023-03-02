@@ -1,0 +1,12 @@
+.cart {
+	> div {
+		@apply border-2 border-solid mb-2 p-3 py-2.5 px-4 flex justify-between items-center;
+	}
+	.product__title {
+		@apply mr-2 font-semibold;
+	}
+
+	.btn {
+		@apply text-red-500;
+	}
+}

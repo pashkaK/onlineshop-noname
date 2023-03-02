@@ -1,0 +1,24 @@
+.gallery {
+	.main {
+		@apply border border-solid w-full h-96;
+	}
+
+	.list {
+		@apply grid grid-cols-4 gap-3;
+	}
+
+	.image {
+		@apply mb-4  bg-center bg-cover bg-no-repeat transition-all;
+	}
+
+	.item {
+		@apply border-2 border-solid h-20;
+
+		> div {
+			@apply h-full;
+		}
+		&.active {
+			@apply border-[#B7E919];
+		}
+	}
+}
