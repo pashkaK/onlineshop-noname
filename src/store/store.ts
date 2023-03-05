@@ -11,15 +11,17 @@ import {
 	REHYDRATE
 } from 'redux-persist'
 import localStorage from 'redux-persist/lib/storage'
+import { userSlice } from './userSlice'
 
 const persistConfig = {
 	key: 'root',
 	storage: localStorage,
-	whitelist: ['cart']
+	whitelist: ['cart', 'user']
 }
 
 const rootReducer = combineReducers({
-	cart: cartSlice.reducer
+	cart: cartSlice.reducer,
+	user: userSlice.reducer
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({

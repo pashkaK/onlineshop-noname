@@ -1,24 +1,40 @@
-.layout {
-	@apply p-10;
+.layoutWrapper {
+	height: 100%;
+	position: relative;
+	.layout {
+		@apply p-10;
 
-	.heading {
-		@apply text-3xl font-semibold mb-5;
-	}
-
-	header {
-		nav {
-			@apply flex items-center justify-center mb-5;
+		.heading {
+			@apply text-3xl font-semibold mb-5;
 		}
-		a {
-			@apply text-lime-600 mx-4 duration-500 ease-in-out border border-solid border-transparent;
 
-			&:hover {
-				@apply border-b-lime-600;
+		header {
+			nav {
+				@apply flex items-center justify-center mb-5;
+			}
+			a {
+				@apply text-lime-600 mx-4 duration-500 ease-in-out border border-solid border-transparent;
+
+				&:hover {
+					@apply border-b-lime-600;
+				}
 			}
 		}
-	}
 
-	input {
-		@apply border-2 border-solid border-lime-600 m-10;
+		input {
+			@apply border-2 border-solid border-lime-600;
+		}
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.layout {
+		padding: 15px !important;
+	}
+}
+@media screen and (max-width: 360px) {
+	a {
+		margin-left: 10px !important;
+		margin-right: 10px !important;
 	}
 }

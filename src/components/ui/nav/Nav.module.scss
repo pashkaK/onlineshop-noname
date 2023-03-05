@@ -1,0 +1,10 @@
+.authwrapper {
+	position: absolute;
+	right: 25px;
+}
+
+@media screen and (max-width: 600px) {
+	.authwrapper {
+		position: static;
+	}
+}

@@ -1,0 +1,14 @@
+.wrapper {
+	padding: 35px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.title {
+		text-align: center;
+		font-size: 32px;
+	}
+	.link:hover {
+		text-decoration: underline;
+	}
+}

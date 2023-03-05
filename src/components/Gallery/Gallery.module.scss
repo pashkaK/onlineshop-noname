@@ -1,4 +1,5 @@
 .gallery {
+	width: 50%;
 	.main {
 		@apply border border-solid w-full h-96;
 	}
@@ -20,5 +21,11 @@
 		&.active {
 			@apply border-[#B7E919];
 		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.gallery {
+		width: 100%;
 	}
 }

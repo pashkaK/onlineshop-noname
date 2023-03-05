@@ -4,8 +4,26 @@
 
 body {
 	@apply text-base text-[#111];
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .grid__wrapper {
 	@apply grid grid-cols-4 gap-8;
+}
+#root {
+	height: 100vh;
+}
+.page {
+	cursor: pointer;
+	border: 1px solid lime;
+	padding: 10px;
+	border-radius: 4px;
+	margin-right: 7px;
+}
+
+.page__current {
+	border: 2px solid orange;
+	font-weight: bold;
 }

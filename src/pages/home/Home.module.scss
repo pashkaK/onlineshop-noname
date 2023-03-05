@@ -1,0 +1,15 @@
+.loading {
+	@apply text-blue-400 text-2xl flex justify-center align-middle;
+}
+.filter {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+@media screen and (max-width: 480px) {
+	.filter {
+		flex-direction: column;
+	}
+}

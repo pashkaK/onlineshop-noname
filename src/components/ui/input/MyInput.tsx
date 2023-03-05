@@ -1,23 +1,8 @@
 import React from 'react'
-
-// interface myInputProps {
-// 	value: string
-// 	onChange: (value: string) => void
-// 	placeholder: string
-// }
-// const MyInput = ({ value, onChange, placeholder }: myInputProps) => {
-// 	return (
-// 		<input
-// 			className='border-2 border-solid'
-// 			placeholder={placeholder}
-// 			value={value}
-// 			onChange={e => setSearchQuery(e.target.value)}
-// 		></input>
-// 	)
-// }
+import styles from './MyInput.module.scss'
 
 const MyInput = (props: any) => {
-	return <input className='border-2 border-solid' {...props}></input>
+	return <input className={styles.input} {...props}></input>
 }
 
 export default MyInput

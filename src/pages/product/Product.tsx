@@ -9,8 +9,10 @@ import styles from './Product.module.scss'
 import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { useActions } from '../../hooks/useActions'
 import RatingBar from '../../components/ui/RatingBar/RatingBar'
+import { useAuth } from '../../hooks/useAuth'
 
 const Product: FC = () => {
+	const { isAuth } = useAuth()
 	const params = useParams()
 	const productId = params.id
 	const { data: product, isLoading } = useQuery(['product', productId], () =>
@@ -27,7 +29,34 @@ const Product: FC = () => {
 			</Layout>
 		)
 	const isInCart = items.some(item => item.id === Number(productId))
-	return (
+	return isAuth ? (
+		<Layout>
+			{isLoading && <div>Loading...</div>}
+			<div className={styles.product}>
+				<Gallery images={product.images} />
+				<div className={styles.info}>
+					<h1 className={styles.heading}>{product.title}</h1>
+					<div className={styles.price}>
+						{new Intl.NumberFormat('en-US', {
+							style: 'currency',
+							currency: 'USD',
+							maximumFractionDigits: 0
+						}).format(product.price)}
+					</div>
+					<div className={styles.description}>{product.description}</div>
+					<RatingBar rating={product.rating} />
+				</div>
+			</div>
+
+			<Button
+				onClick={() => {
+					isInCart ? removeFromCart(Number(productId)) : addToCart(product)
+				}}
+			>
+				{isInCart ? 'This product is already in the cart' : 'Add to cart'}
+			</Button>
+		</Layout>
+	) : (
 		<Layout>
 			{isLoading && <div>Loading...</div>}
 
@@ -42,12 +71,13 @@ const Product: FC = () => {
 			</div>
 			<div className={styles.description}>{product.description}</div>
 			<RatingBar rating={product.rating} />
+
 			<Button
-				onClick={() =>
-					isInCart ? removeFromCart(Number(productId)) : addToCart(product)
-				}
+				onClick={() => {
+					alert('To add an item to your cart, you need to log in')
+				}}
 			>
-				{isInCart ? 'This product is already in the cart' : 'Add to cart'}
+				Add to cart
 			</Button>
 		</Layout>
 	)

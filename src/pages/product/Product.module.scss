@@ -4,3 +4,18 @@
 .price {
 	@apply text-lg;
 }
+.product {
+	display: flex;
+	justify-content: space-around;
+	.info {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		margin-left: 20px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.product {
+		flex-direction: column;
+	}
+}

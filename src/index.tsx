@@ -8,6 +8,7 @@ import AppRouter from './components/AppRouter'
 import { Provider } from 'react-redux'
 import { persistor, store } from './store/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import './firebase'
 
 const queryClient = new QueryClient()
 

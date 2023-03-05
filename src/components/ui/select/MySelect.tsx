@@ -1,5 +1,6 @@
 import React from 'react'
 import { IOption } from '../../../types/IOption'
+import styles from './MySelect.module.scss'
 
 interface MySelectProps {
 	options: IOption[]
@@ -16,6 +17,7 @@ const MySelect = ({
 }: MySelectProps) => {
 	return (
 		<select
+			className={styles.select}
 			value={value}
 			onChange={event => onChange(event.target.value)}
 			// onChange={selectedSort => setFilter({ ...filter, sort: selectedSort })}

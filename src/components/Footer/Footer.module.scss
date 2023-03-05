@@ -1,0 +1,24 @@
+.footer {
+	@apply w-full p-2;
+	background-color: #d5d9e7;
+	flex: 0 0 auto;
+	position: relative;
+	bottom: 0;
+	.created {
+		display: flex;
+		justify-content: center;
+		span {
+			font-style: italic;
+		}
+	}
+	nav {
+		@apply flex items-center justify-center mb-5;
+	}
+	a {
+		@apply text-lime-600 mx-4 duration-500 ease-in-out border border-solid border-transparent;
+
+		&:hover {
+			@apply border-b-lime-600;
+		}
+	}
+}

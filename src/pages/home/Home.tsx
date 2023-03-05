@@ -6,63 +6,75 @@ import MyInput from '../../components/ui/input/MyInput'
 import MySelect from '../../components/ui/select/MySelect'
 import { useQuery } from '@tanstack/react-query'
 import { ProductsService } from '../../services/ProductsService'
+import Pagination from '../../components/ui/pagination/Pagination'
+import styles from './Home.module.scss'
+import Footer from '../../components/Footer/Footer'
 
 const Home: FC = () => {
+	// const { isAuth, email } = useAuth()
 	const [searchQuery, setSearchQuery] = useState('')
 	const [selectedSort, setSelectedSort] = useState('')
-	const [page, setPage] = useState(0)
-	const [filter, setFilter] = useState({ sort: '', query: '' })
-	const { data: products, isLoading } = useQuery(
-		['products', page],
-		() => ProductsService.getProducts(page),
-		{
-			select: ({ products }) => products
-		}
+	const [page, setPage] = useState(1)
+
+	const { data, isLoading } = useQuery(['products', 'total', page], () =>
+		ProductsService.getProducts(page)
 	)
+	const changePage = (page: number) => {
+		setPage(page)
+	}
 
 	const sortProducts = (sort: string) => {
 		setSelectedSort(sort)
 	}
 
 	const sortedAndSearchedProducts = useProducts(
-		products,
+		data?.products,
 		selectedSort,
 		searchQuery
 	)
 	return (
-		<Layout title='Shop the collection'>
-			<div>
-				<MyInput
-					placeholder='Search product'
-					value={searchQuery}
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-						setSearchQuery(e.target.value)
-					}
-				/>
-				<MySelect
-					value={selectedSort}
-					onChange={sortProducts}
-					defaultValue='Sorting'
-					options={[
-						{ value: 'expensivePrice', name: 'From expensive to cheap' },
-						{ value: 'cheapPrice', name: 'From cheap to expensive' },
-						{ value: 'rating', name: 'By rating' }
-					]}
-				/>
-			</div>
-			{/*<PostFilter />*/}
-			{isLoading ? (
-				<div className='text-blue-400 text-2xl'>Loading...</div>
-			) : sortedAndSearchedProducts?.length ? (
-				<div className='grid__wrapper'>
-					{sortedAndSearchedProducts.map(product => (
-						<ProductItem key={product.id} product={product} />
-					))}
+		<div>
+			<Layout title='Shop the collection'>
+				<div className={styles.filter}>
+					<MyInput
+						placeholder='Search product'
+						value={searchQuery}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setSearchQuery(e.target.value)
+						}
+					/>
+					<MySelect
+						value={selectedSort}
+						onChange={sortProducts}
+						defaultValue='Sorting'
+						options={[
+							{ value: 'expensivePrice', name: 'From expensive to cheap' },
+							{ value: 'cheapPrice', name: 'From cheap to expensive' },
+							{ value: 'rating', name: 'By rating' }
+						]}
+					/>
 				</div>
-			) : (
-				<div>Products not found</div>
-			)}
-		</Layout>
+
+				{isLoading ? (
+					<div className={styles.loading}>Loading...</div>
+				) : sortedAndSearchedProducts?.length ? (
+					<div className='grid__wrapper'>
+						{sortedAndSearchedProducts.map(product => (
+							<ProductItem key={product.id} product={product} />
+						))}
+					</div>
+				) : (
+					<div>Products not found</div>
+				)}
+				<Pagination
+					page={page}
+					limit={data?.limit}
+					total={data?.total}
+					changePage={changePage}
+				/>
+			</Layout>
+			<Footer />
+		</div>
 	)
 }
 
