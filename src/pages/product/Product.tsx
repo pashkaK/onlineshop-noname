@@ -36,6 +36,8 @@ const Product: FC = () => {
 				<Gallery images={product.images} />
 				<div className={styles.info}>
 					<h1 className={styles.heading}>{product.title}</h1>
+					<br />
+
 					<div className={styles.price}>
 						{new Intl.NumberFormat('en-US', {
 							style: 'currency',
@@ -44,6 +46,7 @@ const Product: FC = () => {
 						}).format(product.price)}
 					</div>
 					<div className={styles.description}>{product.description}</div>
+
 					<RatingBar rating={product.rating} />
 				</div>
 			</div>

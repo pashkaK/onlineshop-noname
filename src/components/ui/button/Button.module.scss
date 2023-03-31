@@ -2,6 +2,7 @@
 	@apply w-10/12 mx-auto mt-5 transition-colors duration-500 ease-in-out block bg-[#B7E919] border-[#688609] border-solid uppercase px-5 py-3;
 
 	&:hover {
-		@apply bg-[#c2ff00];
+		//@apply bg-[#c2ff00];
+		background-color: #c2ff00;
 	}
 }

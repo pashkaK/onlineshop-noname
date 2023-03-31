@@ -9,12 +9,17 @@ import { ProductsService } from '../../services/ProductsService'
 import Pagination from '../../components/ui/pagination/Pagination'
 import styles from './Home.module.scss'
 import Footer from '../../components/Footer/Footer'
+import MyModal from '../../components/ui/myModal/MyModal'
+import { IProduct } from '../../types/IProduct'
+import { ValidationSchema } from '../../components/FormFormik/FormFormik'
 
 const Home: FC = () => {
 	// const { isAuth, email } = useAuth()
 	const [searchQuery, setSearchQuery] = useState('')
 	const [selectedSort, setSelectedSort] = useState('')
 	const [page, setPage] = useState(1)
+	const [modal, setModal] = useState(false)
+	const [dataMutation, setDataMutation] = useState<IProduct>({} as IProduct)
 
 	const { data, isLoading } = useQuery(['products', 'total', page], () =>
 		ProductsService.getProducts(page)
@@ -32,10 +37,17 @@ const Home: FC = () => {
 		selectedSort,
 		searchQuery
 	)
+
 	return (
 		<div>
 			<Layout title='Shop the collection'>
 				<div className={styles.filter}>
+					<button className={styles.button} onClick={() => setModal(true)}>
+						Create product
+					</button>
+					<MyModal visible={modal} setVisible={setModal}>
+						<ValidationSchema setVisible={setModal} />
+					</MyModal>
 					<MyInput
 						placeholder='Search product'
 						value={searchQuery}

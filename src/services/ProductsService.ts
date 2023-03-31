@@ -20,5 +20,10 @@ export const ProductsService = {
 			`https://dummyjson.com/products/${id}`
 		)
 		return response.data
+	},
+	async createProduct(data: IProduct) {
+		return axios.post('https://dummyjson.com/products/add', data, {
+			headers: { 'Content-Type': 'application/json' }
+		})
 	}
 }

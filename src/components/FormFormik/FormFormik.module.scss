@@ -1,0 +1,21 @@
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	text-align: center;
+}
+
+.input {
+	margin: 10px auto;
+	padding: 1px 3px;
+}
+.label {
+	padding: 1px 3px;
+	font-style: italic;
+}
+
+.error {
+	text-align: center;
+}
